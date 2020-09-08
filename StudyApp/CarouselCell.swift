@@ -9,5 +9,8 @@
 import UIKit
 
 class CarouselCell: UICollectionViewCell {
+    static let identifier = "Cell"
+    
+    @IBOutlet weak var imageView: UIView!
     
 }
