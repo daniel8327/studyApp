@@ -15,9 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Thread.sleep(forTimeInterval: 3.0)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+            
+            UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Intro", bundle: nil).instantiateViewController(withIdentifier: "IntroNavigation")
+        }
         return true
     }
-
-
 }
-

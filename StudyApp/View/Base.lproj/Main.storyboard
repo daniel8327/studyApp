@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--메인-->
+        <scene sceneID="q7T-Kg-KQG">
+            <objects>
+                <viewController title="메인" id="5oh-8d-h0n" customClass="MainViewController" customModule="StudyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l8T-J6-LAa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gnH-f8-dZa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="메인" id="rUg-ig-BWh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZV-S9-rwU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4086.9565217391309" y="-82.366071428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YUl-km-dvy">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavigation" automaticallyAdjustsScrollViewInsets="NO" id="R72-lX-4PC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xVR-iu-2vI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pod-ri-SvL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5oh-8d-h0n" kind="relationship" relationship="rootViewController" id="pR6-OU-2g2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sY6-cn-mxt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3326.0869565217395" y="-82.366071428571431"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="NPK-EA-fJn">
+            <objects>
+                <viewController storyboardIdentifier="SWRevealViewController" id="6kn-f3-q0a" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Ex-sg-vPf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rJD-ow-70I"/>
+                    </view>
+                    <connections>
+                        <segue destination="R72-lX-4PC" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="hmM-Nn-5TK"/>
+                        <segue destination="nNb-mc-BHP" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="fHr-nB-Ld4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m56-Yd-bpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2461" y="-425"/>
+        </scene>
+        <!--Main Side Menu View Controller-->
+        <scene sceneID="7At-F7-5P4">
+            <objects>
+                <viewController storyboardIdentifier="MainSideMenuViewController" id="nNb-mc-BHP" customClass="MainSideMenuViewController" customModule="StudyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MJg-Pd-Dzt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Tkj-vl-Poz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXf-jY-ttk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3326" y="-725"/>
+        </scene>
+    </scenes>
+</document>
