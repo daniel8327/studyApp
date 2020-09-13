@@ -30,6 +30,16 @@ class IntroPageViewController: UIPageViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        for view in view.subviews {
+            if view is UIPageControl {
+                view.backgroundColor = UIColor.clear
+            }
+        }
+    }
+    
     private func getViewController(index: Int) -> UIViewController {
         
         let viewController = IntroViewController(index: index)

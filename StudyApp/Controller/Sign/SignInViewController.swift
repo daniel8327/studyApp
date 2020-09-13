@@ -99,10 +99,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         present(targetVC, animated: true)
         
     }
-    @IBAction func actionFindPW(_ sender: UIButton) {
-    }
-    @IBAction func actionFindID(_ sender: UIButton) {
-    }
     /*
      // MARK: - Navigation
      

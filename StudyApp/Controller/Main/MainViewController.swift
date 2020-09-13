@@ -13,7 +13,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setSideMenuButton()    }
+        setSideMenuButton()
+        
+    }
     
     func setSideMenuButton() {
         
@@ -40,5 +42,4 @@ class MainViewController: UIViewController {
         }
         self.view.endEditing(true)
     }
-
 }

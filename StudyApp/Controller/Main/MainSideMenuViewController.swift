@@ -10,11 +10,13 @@ import UIKit
 
 class MainSideMenuViewController: UIViewController {
 
-    let menus: [String] = ["AAAA", "BBBB", "CCCC"]
+    let menus: [String] = ["내정보", "앱버전", "로그아웃"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let tableView = UITableView()
+        
+        print("UIApplication.shared.keyWindow?.safeAreaInsets.top \(UIApplication.shared.keyWindow?.safeAreaInsets.top )")
         tableView.frame = self.view.frame
         
         self.view.addSubview(tableView)
@@ -37,5 +39,9 @@ extension MainSideMenuViewController: UITableViewDelegate, UITableViewDataSource
         
         cell.textLabel?.text = menus[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Common.GF_TOAST(self.view, menus[indexPath.row])
     }
 }

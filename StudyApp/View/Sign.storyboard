@@ -69,7 +69,6 @@
                                 <rect key="frame" x="16" y="376.5" width="382" height="30"/>
                                 <state key="normal" title="비밀번호 찾기"/>
                                 <connections>
-                                    <action selector="actionFindPW:" destination="215-ej-sOr" eventType="touchUpInside" id="ihO-LK-lBo"/>
                                     <segue destination="12k-Lf-Kh2" kind="show" id="pZt-L3-EoD"/>
                                 </connections>
                             </button>
@@ -77,7 +76,6 @@
                                 <rect key="frame" x="16" y="422.5" width="382" height="30"/>
                                 <state key="normal" title="아이디찾기"/>
                                 <connections>
-                                    <action selector="actionFindID:" destination="215-ej-sOr" eventType="touchUpInside" id="b3Q-kn-Xqz"/>
                                     <segue destination="lkH-ga-9wV" kind="show" id="fxS-e8-BQU"/>
                                 </connections>
                             </button>

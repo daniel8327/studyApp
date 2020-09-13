@@ -33,6 +33,7 @@ class IntroViewController: UIViewController {
         super.viewDidLoad()
         
         imageView?.frame = self.view.frame
+        
         button?.frame = CGRect(x: 20, y: self.view.bounds.maxY - 200, width: self.view.frame.width - 40, height: 50)
         button?.backgroundColor = .white
         button?.layer.cornerRadius = 8
