@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //Thread.sleep(forTimeInterval: 3.0)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
             
             UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Intro", bundle: nil).instantiateViewController(withIdentifier: "IntroNavigation")
         }

@@ -12,8 +12,14 @@ import Alamofire
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var id: UITextField!
     @IBOutlet weak var pw: UITextField!
+    
+    @IBAction func didClick(_ sender: UIBarButtonItem) {
+        dismissKeyboard()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,15 +57,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             Common.GF_TOAST(self.view, "이메일이 유효하지 않습니다.")
             return
         }
-        if !Common.GF_IS_REGEX_PASS(pw.text) {
-            Common.GF_TOAST(self.view, "비밀번호가 유효하지 않습니다.")
-            return
-        }
+//        if !Common.GF_IS_REGEX_PASS(pw.text) {
+//            Common.GF_TOAST(self.view, "비밀번호가 유효하지 않습니다.")
+//            return
+//        }
         
         // id, pw 검증
         if id.text?.count ?? 0 > 0 && pw.text?.count ?? 0 > 0 {
             
-            let url = "https://api.sheety.co/a439dfd2ff24fe108bfeebc4f858072d/iOsStudyAppApi/users"
+            let url = "http://zanghscoding.iptime.org:3000/api/login"
             var params :[String:String] = [:]
             params.updateValue(id.text!, forKey: "id")
             params.updateValue(pw.text!, forKey: "pw")
@@ -111,13 +117,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     //화면 여백 터치 시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.view.endEditing(true)
+        dismissKeyboard()
     }
     
     // Protocol - UITextFieldDelegate 텍스트필드 가릴때
     func textFieldDidEndEditing(_ textField: UITextField) {
         dismissKeyboard()
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.inputAccessoryView = toolbar
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -138,10 +148,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillShow(_ sender: Notification) {
         
+        guard let keyboardFrame = sender.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height
     }
     
     @objc func keyboardWillHide(_ sender: Notification) {
-        
+        scrollView.contentInset.bottom = 0
     }
     
     override open func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {

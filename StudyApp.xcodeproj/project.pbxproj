@@ -16,6 +16,8 @@
 		64499D73250CED3900246487 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D72250CED3900246487 /* SignUpViewController.swift */; };
 		64499D75250CED9600246487 /* SignFindIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D74250CED9600246487 /* SignFindIDViewController.swift */; };
 		64499D77250CEDFF00246487 /* SignFindPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D76250CEDFF00246487 /* SignFindPWViewController.swift */; };
+		64499D8725139CD000246487 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 64499D8625139CD000246487 /* login.png */; };
+		64499D892513A2D600246487 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D882513A2D600246487 /* Extension.swift */; };
 		64AE7EE82507E33C005CEFFD /* image0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE22507E33C005CEFFD /* image0.jpg */; };
 		64AE7EE92507E33C005CEFFD /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE32507E33C005CEFFD /* image2.jpg */; };
 		64AE7EEA2507E33C005CEFFD /* image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE42507E33C005CEFFD /* image4.jpg */; };
@@ -47,6 +49,8 @@
 		64499D72250CED3900246487 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		64499D74250CED9600246487 /* SignFindIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFindIDViewController.swift; sourceTree = "<group>"; };
 		64499D76250CEDFF00246487 /* SignFindPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFindPWViewController.swift; sourceTree = "<group>"; };
+		64499D8625139CD000246487 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		64499D882513A2D600246487 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		64AE7EE22507E33C005CEFFD /* image0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image0.jpg; sourceTree = "<group>"; };
 		64AE7EE32507E33C005CEFFD /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		64AE7EE42507E33C005CEFFD /* image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpg; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		64499D3E250BB54B00246487 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				64499D8625139CD000246487 /* login.png */,
 				64499D41250BB57C00246487 /* intro.jpg */,
 				64AE7EE22507E33C005CEFFD /* image0.jpg */,
 				64AE7EE52507E33C005CEFFD /* image1.jpg */,
@@ -169,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				64499D70250CE8DC00246487 /* Common.swift */,
+				64499D882513A2D600246487 /* Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 				64B7DF012506656F00616D87 /* LaunchScreen.storyboard in Resources */,
 				64499D32250BB39C00246487 /* Sign.storyboard in Resources */,
 				64AE7EED2507E33C005CEFFD /* image3.jpg in Resources */,
+				64499D8725139CD000246487 /* login.png in Resources */,
 				64B7DEFE2506656F00616D87 /* Assets.xcassets in Resources */,
 				64B7DEFC2506656C00616D87 /* Main.storyboard in Resources */,
 				64AE7EE82507E33C005CEFFD /* image0.jpg in Resources */,
@@ -363,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64499D892513A2D600246487 /* Extension.swift in Sources */,
 				64AE7EF525085829005CEFFD /* SignInViewController.swift in Sources */,
 				64499D77250CEDFF00246487 /* SignFindPWViewController.swift in Sources */,
 				64499D75250CED9600246487 /* SignFindIDViewController.swift in Sources */,
