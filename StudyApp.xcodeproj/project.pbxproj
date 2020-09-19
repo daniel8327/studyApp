@@ -34,6 +34,7 @@
 		64B7DF122507BF9900616D87 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF112507BF9900616D87 /* IntroPageViewController.swift */; };
 		64B7DF142507D53C00616D87 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF132507D53C00616D87 /* IntroViewController.swift */; };
 		64B7DF162507DBA600616D87 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF152507DBA600616D87 /* GlobalConstants.swift */; };
+		64C11A8A25160902007D6DC1 /* kakao_login_large_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */; };
 		866315A94DDEBBEC7FDE2154 /* Pods_StudyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49D450358042A61E44F07FD /* Pods_StudyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		64B7DF112507BF9900616D87 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		64B7DF132507D53C00616D87 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		64B7DF152507DBA600616D87 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		64C11A822516007F007D6DC1 /* StudyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudyApp.entitlements; sourceTree = "<group>"; };
+		64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_large_wide.png; sourceTree = "<group>"; };
 		73389AE7EC897C3478141109 /* Pods-StudyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyApp.debug.xcconfig"; path = "Target Support Files/Pods-StudyApp/Pods-StudyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B49D450358042A61E44F07FD /* Pods_StudyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +162,7 @@
 		64499D3E250BB54B00246487 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */,
 				64499D8625139CD000246487 /* login.png */,
 				64499D41250BB57C00246487 /* intro.jpg */,
 				64AE7EE22507E33C005CEFFD /* image0.jpg */,
@@ -200,6 +204,7 @@
 		64B7DEF32506656C00616D87 /* StudyApp */ = {
 			isa = PBXGroup;
 			children = (
+				64C11A822516007F007D6DC1 /* StudyApp.entitlements */,
 				64499D6F250CE8CE00246487 /* Common */,
 				64499D3E250BB54B00246487 /* Source */,
 				64499D38250BB50200246487 /* Domain */,
@@ -300,6 +305,7 @@
 				64AE7EE82507E33C005CEFFD /* image0.jpg in Resources */,
 				64AE7EEA2507E33C005CEFFD /* image4.jpg in Resources */,
 				64499D34250BB3A500246487 /* Intro.storyboard in Resources */,
+				64C11A8A25160902007D6DC1 /* kakao_login_large_wide.png in Resources */,
 				64AE7EEB2507E33C005CEFFD /* image1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,14 +535,15 @@
 			baseConfigurationReference = 73389AE7EC897C3478141109 /* Pods-StudyApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StudyApp/StudyApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G67T3826C4;
+				DEVELOPMENT_TEAM = 93YL8E7YZM;
 				INFOPLIST_FILE = StudyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daniel.StudyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sejongtelecom.StudyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/danielchang/Dev/Study/StudyApp/StudyApp/StudyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -549,14 +556,15 @@
 			baseConfigurationReference = 2F6A69451A9BF161CC8DE6B9 /* Pods-StudyApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StudyApp/StudyApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G67T3826C4;
+				DEVELOPMENT_TEAM = 93YL8E7YZM;
 				INFOPLIST_FILE = StudyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daniel.StudyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sejongtelecom.StudyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/danielchang/Dev/Study/StudyApp/StudyApp/StudyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

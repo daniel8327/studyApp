@@ -35,7 +35,7 @@ class IntroViewController: UIViewController {
         imageView?.frame = self.view.frame
         
         button?.frame = CGRect(x: 20, y: self.view.bounds.maxY - 200, width: self.view.frame.width - 40, height: 50)
-        button?.backgroundColor = .white
+        button?.backgroundColor = UIColor.init(named: "backgroundColor")
         button?.layer.cornerRadius = 8
         
         self.view.addSubview(imageView!)
@@ -45,7 +45,8 @@ class IntroViewController: UIViewController {
     func setImageView(index: Int) {
         imageView?.image = UIImage(named: "image\(index).jpg")
         button?.setTitle((index == introScreenSize - 1 ? "닫기" : "Skip"), for: .normal)
-        button?.setTitleColor(.black, for: .normal)
+        button?.setTitleColor(UIColor.init(named: "textColor"), for: .normal)
+        
         button?.addTarget(self, action: #selector(closeIntroService), for: .touchUpInside)
     }
     

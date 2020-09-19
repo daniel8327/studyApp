@@ -9,6 +9,9 @@
 import UIKit
 
 import Alamofire
+import AuthenticationServices
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,6 +19,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var id: UITextField!
     @IBOutlet weak var pw: UITextField!
+    @IBOutlet weak var viewAppleID: UIView!
     
     @IBAction func didClick(_ sender: UIBarButtonItem) {
         dismissKeyboard()
@@ -23,6 +27,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 13.0, *) {
+            addAppleIDButton()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -50,6 +58,75 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @available(iOS 13.0, *)
+    func addAppleIDButton() {
+        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .whiteOutline)
+        button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
+        
+        viewAppleID.isHidden = false
+        button.frame = viewAppleID.bounds
+        viewAppleID.addSubview(button)
+    }
+    
+    @IBAction func handleKakaoSignInButton() {
+        
+        // 카카오톡 설치 여부 확인
+        if (AuthApi.isKakaoTalkLoginAvailable()) {
+            AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+
+                    //do something
+                    if let auth = oauthToken {
+                        print("카카오 앱 로그인: \(auth)")
+                        
+                        if let arr = auth.scopes {
+
+                            for aa in arr {
+                                let ax = aa
+                            }
+                        }
+                        
+                        auth.scopes.map { print($0) }
+                    }
+                }
+            }
+        } else {
+            Common.GF_TOAST(self.view, "카카오톡이 안깔려있음")
+            // 카카오계정으로 로그인
+            AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoAccount() success.")
+
+                    //do something
+                    if let auth = oauthToken {
+                        print("카카오 웹 로그인: \(auth)")
+                        
+                        auth.scopes.map { print($0) }
+                    }
+                }
+            }
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    @objc func handleAppleSignInButton() {
+        
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
     }
     
     @IBAction func actionLogin() {
@@ -163,5 +240,40 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
         
         super.present(viewControllerToPresent, animated: flag, completion: completion)
+    }
+}
+
+extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        
+        Common.GF_TOAST(self.view, "Apple ID 로그인 실패\n\(error.localizedDescription)")
+        print("didCompleteWithError: \(error)")
+    }
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let user = credential.user
+            let email = credential.email
+            
+            print("""
+            user: \(user)
+            email: \(email ?? "email is not provided")
+            """)
+            //print("user: \(user)\nemail: \(email)")
+            
+            if let fullName = credential.fullName {
+                print("full name: \(fullName.givenName ?? "") \(fullName.middleName ?? "") \(fullName.familyName ?? "")")
+            }
+        }
+        
     }
 }

@@ -1,11 +1,21 @@
 PODS:
   - Alamofire (5.2.2)
+  - KakaoSDKAuth (2.0.2):
+    - KakaoSDKCommon (= 2.0.2)
+  - KakaoSDKCommon (2.0.2):
+    - Alamofire (~> 5.1)
+  - KakaoSDKUser (2.0.2):
+    - KakaoSDKAuth (= 2.0.2)
+    - KakaoSDKCommon (= 2.0.2)
   - SwiftyJSON (5.0.0)
   - SWRevealViewController (2.3.0)
   - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKUser
   - SwiftyJSON (= 5.0.0)
   - SWRevealViewController (~> 2.3)
   - Toast-Swift (= 5.0.0)
@@ -13,16 +23,22 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - SwiftyJSON
     - SWRevealViewController
     - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  KakaoSDKAuth: 69698a4a6726f2b43fb43246891a1a747343935e
+  KakaoSDKCommon: 2226e13fbbd4a875826c7a348cf4f535392a4b8f
+  KakaoSDKUser: a4a82ba374e0b3478be3f66307943e85542149ee
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 02b72a5651510ad4489a2e47f8dedf08ef0ce805
+PODFILE CHECKSUM: 1f01dc4dda52dbe7c84e12b3b7e4759adea31b7e
 
 COCOAPODS: 1.9.0
