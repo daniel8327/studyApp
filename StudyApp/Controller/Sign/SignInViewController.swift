@@ -160,8 +160,8 @@ class SignInViewController: BaseViewController {
             let url = "http://zanghscoding.iptime.org:3000/api/login"
             //let url = "http://dev.app.hoduware.com/api/v1/auth/login/0"
             var params = Dictionary<String,Any>()
-            params.updateValue(id.text!, forKey: "id")
-            params.updateValue(pw.text!, forKey: "pw")
+            params.updateValue(id.text!, forKey: "user_email")
+            params.updateValue(pw.text!, forKey: "user_pw")
             //params.updateValue("test1@naver.com", forKey: "user_email")
             //params.updateValue("1111", forKey: "user_pw")
         
