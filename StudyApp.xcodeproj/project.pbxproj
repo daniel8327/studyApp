@@ -35,6 +35,7 @@
 		64B7DF142507D53C00616D87 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF132507D53C00616D87 /* IntroViewController.swift */; };
 		64B7DF162507DBA600616D87 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF152507DBA600616D87 /* GlobalConstants.swift */; };
 		64C11A8A25160902007D6DC1 /* kakao_login_large_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */; };
+		64C11AA1251B98A0007D6DC1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */; };
 		866315A94DDEBBEC7FDE2154 /* Pods_StudyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49D450358042A61E44F07FD /* Pods_StudyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		64B7DF152507DBA600616D87 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		64C11A822516007F007D6DC1 /* StudyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudyApp.entitlements; sourceTree = "<group>"; };
 		64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_large_wide.png; sourceTree = "<group>"; };
+		64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73389AE7EC897C3478141109 /* Pods-StudyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyApp.debug.xcconfig"; path = "Target Support Files/Pods-StudyApp/Pods-StudyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B49D450358042A61E44F07FD /* Pods_StudyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 		64499D36250BB4F400246487 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				64C11A9F251B987E007D6DC1 /* Base */,
 				64499D39250BB51400246487 /* Intro */,
 				64499D3C250BB51700246487 /* Sign */,
 				64499D3D250BB51700246487 /* Main */,
@@ -222,6 +225,14 @@
 				64499D6C250CDC6600246487 /* StudyApp-Bridging-Header.h */,
 			);
 			path = StudyApp;
+			sourceTree = "<group>";
+		};
+		64C11A9F251B987E007D6DC1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		AFBC6EF7D04F73846E54E5A1 /* Pods */ = {
@@ -389,6 +400,7 @@
 				64B7DEF92506656C00616D87 /* ViewController.swift in Sources */,
 				64B7DF162507DBA600616D87 /* GlobalConstants.swift in Sources */,
 				64B7DEF52506656C00616D87 /* AppDelegate.swift in Sources */,
+				64C11AA1251B98A0007D6DC1 /* BaseViewController.swift in Sources */,
 				64499D73250CED3900246487 /* SignUpViewController.swift in Sources */,
 				64AE7EF725085836005CEFFD /* MainViewController.swift in Sources */,
 			);
