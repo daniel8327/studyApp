@@ -55,18 +55,21 @@ class SignUpViewController: BaseViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func actionRegister() {
+    @IBAction func actionRegister(snsData: Dictionary<String,Any>?) {
             
         let url = "http://zanghscoding.iptime.org:3000/api/signup"
 
         var params = Dictionary<String,Any>()
-        params.updateValue(email.text!, forKey: "user_email")
-        params.updateValue(passWord1.text!, forKey: "user_pw")
-        params.updateValue(userName.text!, forKey: "user_nm")
-        params.updateValue(segment.selectedSegmentIndex, forKey: "group_id")
-        params.updateValue(cellNo.text!, forKey: "user_phone")
-        //params.updateValue("test1@naver.com", forKey: "user_email")
-        //params.updateValue("1111", forKey: "user_pw")
+        
+        if let snsData = snsData {
+            params = snsData
+        } else {
+            params.updateValue(email.text!, forKey: "user_email")
+            params.updateValue(passWord1.text!, forKey: "user_pw")
+            params.updateValue(userName.text!, forKey: "user_nm")
+            params.updateValue(segment.selectedSegmentIndex, forKey: "group_id")
+            params.updateValue(cellNo.text!, forKey: "user_phone")
+        }
     
         super.showIndicator()
         
@@ -95,13 +98,19 @@ class SignUpViewController: BaseViewController {
                     super.showServerUserException(msg: result["resultMsg"].stringValue)
                     return
                 }
-                
-                //UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
 
-                guard let targetVC = self.storyboard?.instantiateViewController(withIdentifier: "SignNavigation") else {
-                    fatalError()
+                super.showIndicator()
+                Common.GF_TOAST(self.view, result["resultMsg"].stringValue)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                    super.hiddenIndicator()
+                    guard let targetVC = self.storyboard?.instantiateViewController(withIdentifier: "SignNavigation") else {
+                        fatalError()
+                    }
+                    super.present(targetVC, animated: true)
                 }
-                super.present(targetVC, animated: true)
+                
                 
             case .failure(let error):
                 print("ERROR: \(error.localizedDescription)")
@@ -137,7 +146,6 @@ extension SignUpViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == cellNo {
-            actionRegister()
             textField.resignFirstResponder()
         } else if textField == email {
             userName.becomeFirstResponder()

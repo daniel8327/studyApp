@@ -1,6 +1,16 @@
 PODS:
   - Alamofire (5.2.2)
   - ANActivityIndicator (1.2.0)
+  - FBSDKCoreKit (7.1.1):
+    - FBSDKCoreKit/Basics (= 7.1.1)
+    - FBSDKCoreKit/Core (= 7.1.1)
+  - FBSDKCoreKit/Basics (7.1.1)
+  - FBSDKCoreKit/Core (7.1.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (7.1.1):
+    - FBSDKLoginKit/Login (= 7.1.1)
+  - FBSDKLoginKit/Login (7.1.1):
+    - FBSDKCoreKit (~> 7.1.1)
   - KakaoSDKAuth (2.0.2):
     - KakaoSDKCommon (= 2.0.2)
   - KakaoSDKCommon (2.0.2):
@@ -16,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - ANActivityIndicator
+  - FBSDKLoginKit
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
@@ -28,6 +39,8 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - ANActivityIndicator
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -39,6 +52,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   ANActivityIndicator: 44a996931d0c554cf157b31056603b23bbdbe76a
+  FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
+  FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   KakaoSDKAuth: 69698a4a6726f2b43fb43246891a1a747343935e
   KakaoSDKCommon: 2226e13fbbd4a875826c7a348cf4f535392a4b8f
   KakaoSDKUser: a4a82ba374e0b3478be3f66307943e85542149ee
@@ -47,6 +62,6 @@ SPEC CHECKSUMS:
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 0a286f522ce5541cbb63bf66c0f0f37a5840ac92
+PODFILE CHECKSUM: 31e369493cc043f550f7272fcb7bacdd03557507
 
 COCOAPODS: 1.9.0

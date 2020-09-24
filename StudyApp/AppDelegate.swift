@@ -10,17 +10,22 @@ import UIKit
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //Thread.sleep(forTimeInterval: 3.0)
         
+        // kakao
         KakaoSDKCommon.initSDK(appKey: "ba4ea422b238a8f4b64aab395b4ebde5")
+        
+        // facebook
+        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
             
@@ -30,10 +35,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        // kakao
         if (AuthApi.isKakaoTalkLoginUrl(url)) {
             return AuthController.handleOpenUrl(url: url)
         }
-
+        
+        // facebook
+        ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
         return false
     }
+    
+    
 }

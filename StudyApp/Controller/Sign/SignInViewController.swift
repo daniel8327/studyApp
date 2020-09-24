@@ -13,6 +13,7 @@ import AuthenticationServices
 import KakaoSDKAuth
 import KakaoSDKUser
 import SwiftyJSON
+import FBSDKLoginKit
 
 class SignInViewController: BaseViewController {
     
@@ -21,6 +22,7 @@ class SignInViewController: BaseViewController {
     @IBOutlet weak var id: UITextField!
     @IBOutlet weak var pw: UITextField!
     @IBOutlet weak var viewAppleID: UIView!
+    @IBOutlet weak var viewFacebookID: UIView!
     
     
     @IBAction func didClick(_ sender: UIBarButtonItem) {
@@ -33,6 +35,11 @@ class SignInViewController: BaseViewController {
         if #available(iOS 13.0, *) {
             addAppleIDButton()
         }
+        
+        // facebook button
+        let loginButton = FBLoginButton()
+        loginButton.frame = viewFacebookID.bounds
+        viewFacebookID.addSubview(loginButton)
         
         
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -99,14 +106,13 @@ class SignInViewController: BaseViewController {
                     if let auth = oauthToken {
                         print("카카오 앱 로그인: \(auth)")
                         
-                        if let arr = auth.scopes {
-                            
-                            for aa in arr {
-                                let ax = aa
-                            }
-                        }
-                        
-                        auth.scopes.map { print($0) }
+                        var snsData = [String: Any]()
+                        snsData.updateValue("카카오톡", forKey: "snsType")
+                        snsData.updateValue(auth.accessToken, forKey: "user_email")
+                        snsData.updateValue(auth.accessToken, forKey: "user_pw")
+                        snsData.updateValue(1, forKey: "group_id")
+                        snsData.updateValue("", forKey: "user_phone")
+                        self.actionLogin(snsData: snsData)
                     }
                 }
             }
@@ -124,7 +130,13 @@ class SignInViewController: BaseViewController {
                     if let auth = oauthToken {
                         print("카카오 웹 로그인: \(auth)")
                         
-                        auth.scopes.map { print($0) }
+                        var snsData = [String: Any]()
+                        snsData.updateValue("카카오톡", forKey: "snsType")
+                        snsData.updateValue(auth.accessToken, forKey: "user_email")
+                        snsData.updateValue(auth.accessToken, forKey: "user_pw")
+                        snsData.updateValue(1, forKey: "group_id")
+                        snsData.updateValue("", forKey: "user_phone")
+                        self.actionLogin(snsData: snsData)
                     }
                 }
             }
@@ -143,25 +155,44 @@ class SignInViewController: BaseViewController {
         controller.performRequests()
     }
     
-    @IBAction func actionLogin() {
-        if !Common.GF_ISVALID_EMAIL(id.text) {
-            Common.GF_TOAST(self.view, "이메일이 유효하지 않습니다.")
-            return
-        }
+    @IBAction func actionLogin(snsData: Dictionary<String,Any>? = nil) {
         
-        if !Common.GF_IS_REGEX_PASS(pw.text) {
-            Common.GF_TOAST(self.view, "비밀번호가 유효하지 않습니다.")
+        var id: String = ""
+        var pw: String = ""
+        
+        if let snsData = snsData {
+            id = snsData["user_email"] as? String ?? ""
+            pw = snsData["user_pw"] as? String ?? ""
+            
+            ///TODO:  비밀번호에 특수문자 넣으면 오류나서 일단 여기서 테스트
+            self.askRegister(snsData: snsData)
+            
             return
+        } else {
+            
+            // 일반 가입만 검증
+            id = self.id.text ?? ""
+            pw = self.pw.text ?? ""
+            
+            if !Common.GF_ISVALID_EMAIL(id) {
+                Common.GF_TOAST(self.view, "이메일이 유효하지 않습니다.")
+                return
+            }
+            
+            if !Common.GF_IS_REGEX_PASS(pw) {
+                Common.GF_TOAST(self.view, "비밀번호가 유효하지 않습니다.")
+                return
+            }
         }
         
         // id, pw 검증
-        if id.text?.count ?? 0 > 0 && pw.text?.count ?? 0 > 0 {
+        if id.count > 0 && pw.count > 0 {
             
             let url = "http://zanghscoding.iptime.org:3000/api/login"
             //let url = "http://dev.app.hoduware.com/api/v1/auth/login/0"
             var params = Dictionary<String,Any>()
-            params.updateValue(id.text!, forKey: "user_email")
-            params.updateValue(pw.text!, forKey: "user_pw")
+            params.updateValue(id, forKey: "user_email")
+            params.updateValue(pw, forKey: "user_pw")
             //params.updateValue("test1@naver.com", forKey: "user_email")
             //params.updateValue("1111", forKey: "user_pw")
         
@@ -174,11 +205,6 @@ class SignInViewController: BaseViewController {
                 
                 super.hiddenIndicator()
                 
-                //            AF.request(url, method: .post, parameters: params)
-                //                //.validate(statusCode: 200..<300)
-                //                //.validate(contentType: ["application/json"])
-                //                .responseJSON { response in
-                
                 print(response)
                 
                 switch response.result {
@@ -186,12 +212,25 @@ class SignInViewController: BaseViewController {
                     print("result: \(result)")
 
                     let result = JSON(result)
+                    
+                    // 일반가입 && resultCode 0 이면 회원가입 이력없어 오류처리
                     if result["resultCode"].intValue == 0 {
-                        super.showServerUserException(msg: result["resultMsg"].stringValue)
-                        return
+                        if snsData == nil  {
+                            super.showServerUserException(msg: result["resultMsg"].stringValue)
+                            return
+                        } else if let snsData = snsData {
+                            // sns 신규 가입 처리
+                            self.askRegister(snsData: snsData)
+                            
+
+                            //UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
+                            
+                            return
+                        }
                     }
                     //UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNavigation")
                     
+                    // 로그인 성공 -> 메인화면 이동
                     super.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController"), animated: true, completion: nil)
                     
                 case .failure(let error):
@@ -212,6 +251,26 @@ class SignInViewController: BaseViewController {
             fatalError()
         }
         super.present(targetVC, animated: true)
+    }
+    
+    func askRegister(snsData: Dictionary<String,Any>) {
+
+        // 가입 이력이 없으니 확인 받고 가입 유도
+        let alert = UIAlertController.init(title: "\(snsData["snsType"] as? String ?? "")으로 가입한 이력이 없습니다.", message: "신규가입 하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+
+            guard let targetVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpNavigation") else {
+                fatalError()
+            }
+            
+            if let vc = targetVC.children.first as? SignUpViewController {
+                vc.actionRegister(snsData: snsData)
+            }
+            super.present(targetVC, animated: true)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -270,6 +329,15 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             if let fullName = credential.fullName {
                 print("full name: \(fullName.givenName ?? "") \(fullName.middleName ?? "") \(fullName.familyName ?? "")")
             }
+            
+
+            var snsData = [String: Any]()
+            snsData.updateValue("Apple ID", forKey: "snsType")
+            snsData.updateValue(user, forKey: "user_email")
+            snsData.updateValue(user, forKey: "user_pw")
+            snsData.updateValue(1, forKey: "group_id")
+            snsData.updateValue("", forKey: "user_phone")
+            self.actionLogin(snsData: snsData)
         }
         
     }
