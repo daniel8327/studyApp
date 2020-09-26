@@ -37,6 +37,12 @@ class SignInViewController: BaseViewController {
             addAppleIDButton()
         }
         
+        
+        
+                    //UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "SimpleMemoMain", bundle: nil).instantiateViewController(withIdentifier: "ListNav")
+        
+        
+        
         // facebook button
         let loginButton = FBLoginButton()
         loginButton.frame = viewFacebookID.bounds
@@ -53,6 +59,8 @@ class SignInViewController: BaseViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        // 자동로그인 체크
         
     }
     
@@ -97,52 +105,67 @@ class SignInViewController: BaseViewController {
     
     @IBAction func handleKakaoSignInButton() {
         
-        // 카카오톡 설치 여부 확인
-        if (AuthApi.isKakaoTalkLoginAvailable()) {
-            AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {
-                    print(error)
-                }
-                else {
-                    print("loginWithKakaoTalk() success.")
-                    
-                    //do something
-                    if let auth = oauthToken {
-                        print("카카오 앱 로그인: \(auth)")
-                        
-                        var snsData = [String: Any]()
-                        snsData.updateValue("카카오톡", forKey: "snsType")
-                        snsData.updateValue(auth.accessToken, forKey: "user_email")
-                        snsData.updateValue(auth.accessToken, forKey: "user_pw")
-                        snsData.updateValue(1, forKey: "group_id")
-                        snsData.updateValue("", forKey: "user_phone")
-                        self.actionLogin(snsData: snsData)
+        // 기정보 가져오기
+        UserApi.shared.accessTokenInfo { accessToken, error in
+            if let error = error {
+                print("토큰 유효성 검사: \(error)")
+                
+                // 카카오톡 설치 여부 확인
+                if (AuthApi.isKakaoTalkLoginAvailable()) {
+                    AuthApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                        if let error = error {
+                            print(error)
+                        }
+                        else {
+                            print("loginWithKakaoTalk() success.")
+                            
+                            //do something
+                            if let auth = oauthToken {
+                                print("카카오 앱 로그인: \(auth)")
+                                self.getKakaoUserInfo()
+                            }
+                        }
+                    }
+                } else {
+                    Common.GF_TOAST(self.view, "카카오톡이 안깔려있음")
+                    // 카카오계정으로 로그인
+                    AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                        if let error = error {
+                            print(error)
+                        }
+                        else {
+                            print("loginWithKakaoAccount() success.")
+                            
+                            //do something
+                            if let auth = oauthToken {
+                                print("카카오 웹 로그인: \(auth)")
+                                self.getKakaoUserInfo()
+                            }
+                        }
                     }
                 }
+            } else {
+                self.getKakaoUserInfo()
             }
-        } else {
-            Common.GF_TOAST(self.view, "카카오톡이 안깔려있음")
-            // 카카오계정으로 로그인
-            AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                if let error = error {
-                    print(error)
-                }
-                else {
-                    print("loginWithKakaoAccount() success.")
-                    
-                    //do something
-                    if let auth = oauthToken {
-                        print("카카오 웹 로그인: \(auth)")
-                        
-                        var snsData = [String: Any]()
-                        snsData.updateValue("카카오톡", forKey: "snsType")
-                        snsData.updateValue(auth.accessToken, forKey: "user_email")
-                        snsData.updateValue(auth.accessToken, forKey: "user_pw")
-                        snsData.updateValue(1, forKey: "group_id")
-                        snsData.updateValue("", forKey: "user_phone")
-                        self.actionLogin(snsData: snsData)
-                    }
-                }
+        }
+    }
+    
+    func getKakaoUserInfo() {
+        UserApi.shared.me { user, error in
+            if let error = error {
+                Common.GF_TOAST(self.view, error.localizedDescription)
+            } else {
+                
+                guard let user = user else { fatalError("카카오톡 유져정보 획득 실패") }
+                print("user: \(user)")
+
+                var snsData = [String: Any]()
+                snsData.updateValue("카카오톡", forKey: "snsType")
+                snsData.updateValue("\(user.id)", forKey: "user_email")
+                snsData.updateValue("\(user.id)", forKey: "user_pw")
+                snsData.updateValue(1, forKey: "group_id")
+                snsData.updateValue("", forKey: "user_phone")
+                self.actionLogin(snsData: snsData)
             }
         }
     }
@@ -172,11 +195,6 @@ class SignInViewController: BaseViewController {
         if let snsData = snsData {
             id = snsData["user_email"] as? String ?? ""
             pw = snsData["user_pw"] as? String ?? ""
-            
-            ///TODO:  비밀번호에 특수문자 넣으면 오류나서 일단 여기서 테스트
-            self.askRegister(snsData: snsData)
-            
-            return
         } else {
             
             // 일반 가입만 검증
