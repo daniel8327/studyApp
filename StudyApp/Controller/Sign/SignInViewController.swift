@@ -13,6 +13,7 @@ import AuthenticationServices
 import KakaoSDKAuth
 import KakaoSDKUser
 import SwiftyJSON
+import FBSDKCoreKit
 import FBSDKLoginKit
 
 class SignInViewController: BaseViewController {
@@ -40,6 +41,9 @@ class SignInViewController: BaseViewController {
         let loginButton = FBLoginButton()
         loginButton.frame = viewFacebookID.bounds
         viewFacebookID.addSubview(loginButton)
+        //loginButton.permissions = ["public_profile", "emial", "user_friends"]
+        //loginButton.addTarget(self, action: #selector(handleFacebookSignInButton), for: .touchUpInside)
+        loginButton.delegate = self
         
         
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -153,6 +157,11 @@ class SignInViewController: BaseViewController {
         controller.delegate = self
         controller.presentationContextProvider = self
         controller.performRequests()
+    }
+    
+    @objc func handleFacebookSignInButton() {
+        
+        
     }
     
     @IBAction func actionLogin(snsData: Dictionary<String,Any>? = nil) {
@@ -340,5 +349,27 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             self.actionLogin(snsData: snsData)
         }
         
+    }
+}
+extension SignInViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        
+        guard let token = result?.token?.tokenString else {
+            fatalError("페이스북 토큰값 얻기 실패")
+        }
+
+        print("페북 앱 로그인: \(token)")
+        
+        var snsData = [String: Any]()
+        snsData.updateValue("페이스북", forKey: "snsType")
+        snsData.updateValue(token, forKey: "user_email")
+        snsData.updateValue(token, forKey: "user_pw")
+        snsData.updateValue(1, forKey: "group_id")
+        snsData.updateValue("", forKey: "user_phone")
+        self.actionLogin(snsData: snsData)
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("facebook log out")
     }
 }
