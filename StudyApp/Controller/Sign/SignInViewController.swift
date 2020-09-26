@@ -6,6 +6,7 @@
 //  Copyright © 2020 장태현. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 import Alamofire
@@ -61,7 +62,17 @@ class SignInViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // 자동로그인 체크
-        
+        let loginHistory = CoreDataManager.shared.getLogin()
+        if loginHistory.count > 0 {
+            
+            var snsData = [String: Any]()
+            snsData.updateValue(loginHistory.first!.login_type, forKey: "login_type")
+            snsData.updateValue(loginHistory.first!.user_email, forKey: "user_email")
+            snsData.updateValue(loginHistory.first!.user_pw, forKey: "user_pw")
+            snsData.updateValue(loginHistory.first!.group_id, forKey: "group_id")
+            snsData.updateValue(loginHistory.first!.user_phone, forKey: "user_phone")
+            self.actionLogin(snsData: snsData)
+        }
     }
     
     
@@ -160,7 +171,7 @@ class SignInViewController: BaseViewController {
                 print("user: \(user)")
 
                 var snsData = [String: Any]()
-                snsData.updateValue("카카오톡", forKey: "snsType")
+                snsData.updateValue("카카오톡", forKey: "login_type")
                 snsData.updateValue("\(user.id)", forKey: "user_email")
                 snsData.updateValue("\(user.id)", forKey: "user_pw")
                 snsData.updateValue(1, forKey: "group_id")
@@ -189,12 +200,18 @@ class SignInViewController: BaseViewController {
     
     @IBAction func actionLogin(snsData: Dictionary<String,Any>? = nil) {
         
-        var id: String = ""
-        var pw: String = ""
+        var id = ""
+        var pw = ""
+        var loginType = ""
+        var groupId :Int16 = 0
+        var userPhone = ""
         
         if let snsData = snsData {
             id = snsData["user_email"] as? String ?? ""
             pw = snsData["user_pw"] as? String ?? ""
+            loginType = snsData["login_type"] as? String ?? ""
+            groupId = snsData["group_id"] as? Int16 ?? 0
+            userPhone = snsData["user_phone"] as? String ?? ""
         } else {
             
             // 일반 가입만 검증
@@ -210,6 +227,9 @@ class SignInViewController: BaseViewController {
                 Common.GF_TOAST(self.view, "비밀번호가 유효하지 않습니다.")
                 return
             }
+            loginType = "일반가입"
+            groupId = 0
+            userPhone = "01064553339"
         }
         
         // id, pw 검증
@@ -260,6 +280,10 @@ class SignInViewController: BaseViewController {
                     // 로그인 성공 -> 메인화면 이동
                     super.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController"), animated: true, completion: nil)
                     
+                    CoreDataManager.shared.saveLogin(userEmail: id, userPw: pw, loginType: loginType, groupId: groupId, userPhone: userPhone) { isDone in
+                        print("coreData write => \(isDone)")
+                    }
+                    
                 case .failure(let error):
                     print("ERROR: \(error.localizedDescription)")
                     
@@ -283,7 +307,7 @@ class SignInViewController: BaseViewController {
     func askRegister(snsData: Dictionary<String,Any>) {
 
         // 가입 이력이 없으니 확인 받고 가입 유도
-        let alert = UIAlertController.init(title: "\(snsData["snsType"] as? String ?? "")으로 가입한 이력이 없습니다.", message: "신규가입 하시겠습니까?", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "\(snsData["login_type"] as? String ?? "")으로 가입한 이력이 없습니다.", message: "신규가입 하시겠습니까?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
 
             guard let targetVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpNavigation") else {
@@ -359,7 +383,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             
 
             var snsData = [String: Any]()
-            snsData.updateValue("Apple ID", forKey: "snsType")
+            snsData.updateValue("Apple ID", forKey: "login_type")
             snsData.updateValue(user, forKey: "user_email")
             snsData.updateValue(user, forKey: "user_pw")
             snsData.updateValue(1, forKey: "group_id")
@@ -379,7 +403,7 @@ extension SignInViewController: LoginButtonDelegate {
         print("페북 앱 로그인: \(token)")
         
         var snsData = [String: Any]()
-        snsData.updateValue("페이스북", forKey: "snsType")
+        snsData.updateValue("페이스북", forKey: "login_type")
         snsData.updateValue(token, forKey: "user_email")
         snsData.updateValue(token, forKey: "user_pw")
         snsData.updateValue(1, forKey: "group_id")

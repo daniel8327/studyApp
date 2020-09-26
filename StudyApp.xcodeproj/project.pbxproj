@@ -36,6 +36,10 @@
 		64B7DF162507DBA600616D87 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B7DF152507DBA600616D87 /* GlobalConstants.swift */; };
 		64C11A8A25160902007D6DC1 /* kakao_login_large_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */; };
 		64C11AA1251B98A0007D6DC1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */; };
+		64DC8E25251F7F430091AED4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64DC8E23251F7F430091AED4 /* Model.xcdatamodeld */; };
+		64DC8E2A251F8A380091AED4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC8E29251F8A380091AED4 /* CoreDataManager.swift */; };
+		64DC8E35251F8F6C0091AED4 /* Login+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC8E33251F8F6C0091AED4 /* Login+CoreDataClass.swift */; };
+		64DC8E36251F8F6C0091AED4 /* Login+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC8E34251F8F6C0091AED4 /* Login+CoreDataProperties.swift */; };
 		866315A94DDEBBEC7FDE2154 /* Pods_StudyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49D450358042A61E44F07FD /* Pods_StudyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +78,10 @@
 		64C11A822516007F007D6DC1 /* StudyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudyApp.entitlements; sourceTree = "<group>"; };
 		64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_large_wide.png; sourceTree = "<group>"; };
 		64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		64DC8E24251F7F430091AED4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		64DC8E29251F8A380091AED4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		64DC8E33251F8F6C0091AED4 /* Login+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+CoreDataClass.swift"; sourceTree = "<group>"; };
+		64DC8E34251F8F6C0091AED4 /* Login+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		73389AE7EC897C3478141109 /* Pods-StudyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyApp.debug.xcconfig"; path = "Target Support Files/Pods-StudyApp/Pods-StudyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B49D450358042A61E44F07FD /* Pods_StudyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +215,7 @@
 		64B7DEF32506656C00616D87 /* StudyApp */ = {
 			isa = PBXGroup;
 			children = (
+				64DC8E28251F89C00091AED4 /* CoreData */,
 				64C11A822516007F007D6DC1 /* StudyApp.entitlements */,
 				64499D6F250CE8CE00246487 /* Common */,
 				64499D3E250BB54B00246487 /* Source */,
@@ -233,6 +242,17 @@
 				64C11AA0251B98A0007D6DC1 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		64DC8E28251F89C00091AED4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				64DC8E33251F8F6C0091AED4 /* Login+CoreDataClass.swift */,
+				64DC8E34251F8F6C0091AED4 /* Login+CoreDataProperties.swift */,
+				64DC8E23251F7F430091AED4 /* Model.xcdatamodeld */,
+				64DC8E29251F8A380091AED4 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		AFBC6EF7D04F73846E54E5A1 /* Pods */ = {
@@ -390,11 +410,15 @@
 				64499D892513A2D600246487 /* Extension.swift in Sources */,
 				64AE7EF525085829005CEFFD /* SignInViewController.swift in Sources */,
 				64499D77250CEDFF00246487 /* SignFindPWViewController.swift in Sources */,
+				64DC8E2A251F8A380091AED4 /* CoreDataManager.swift in Sources */,
+				64DC8E35251F8F6C0091AED4 /* Login+CoreDataClass.swift in Sources */,
+				64DC8E36251F8F6C0091AED4 /* Login+CoreDataProperties.swift in Sources */,
 				64499D75250CED9600246487 /* SignFindIDViewController.swift in Sources */,
 				64499D6A250CC5A000246487 /* CommonAlert.swift in Sources */,
 				64499D6E250CE30600246487 /* MainSideMenuViewController.swift in Sources */,
 				64B7DF142507D53C00616D87 /* IntroViewController.swift in Sources */,
 				64499D71250CE8DC00246487 /* Common.swift in Sources */,
+				64DC8E25251F7F430091AED4 /* Model.xcdatamodeld in Sources */,
 				64B7DF122507BF9900616D87 /* IntroPageViewController.swift in Sources */,
 				64B7DF092506736200616D87 /* CarouselCell.swift in Sources */,
 				64B7DEF92506656C00616D87 /* ViewController.swift in Sources */,
@@ -606,6 +630,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		64DC8E23251F7F430091AED4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				64DC8E24251F7F430091AED4 /* Model.xcdatamodel */,
+			);
+			currentVersion = 64DC8E24251F7F430091AED4 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 64B7DEE92506656C00616D87 /* Project object */;
 }
