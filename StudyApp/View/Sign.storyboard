@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ag-uS-0QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1046.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="825.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login.png" translatesAutoresizingMaskIntoConstraints="NO" id="SRl-XP-olD">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="314"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="247.5"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Guw-YR-YEh">
                                                 <rect key="frame" x="0.0" y="0.0" width="84" height="1"/>
@@ -35,19 +35,19 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0El-fM-ADd">
-                                                <rect key="frame" x="20" y="345" width="16.5" height="20.5"/>
+                                                <rect key="frame" x="20" y="278.5" width="16.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCE-12-LaH">
-                                                <rect key="frame" x="20" y="403" width="26.5" height="20.5"/>
+                                                <rect key="frame" x="20" y="336.5" width="26.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-HG-yTp">
-                                                <rect key="frame" x="84" y="330" width="310" height="50"/>
+                                                <rect key="frame" x="84" y="263.5" width="310" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="x1P-NY-2AX"/>
                                                 </constraints>
@@ -61,7 +61,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2EJ-QW-DBL">
-                                                <rect key="frame" x="84" y="388" width="310" height="50"/>
+                                                <rect key="frame" x="84" y="321.5" width="310" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -72,7 +72,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgv-dc-IHJ">
-                                                <rect key="frame" x="20" y="454" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="387.5" width="374" height="50"/>
                                                 <color key="backgroundColor" name="buttonColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="bg8-kV-ybl"/>
@@ -90,11 +90,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="actionLogin" destination="215-ej-sOr" eventType="touchUpInside" id="F1w-zO-tyc"/>
+                                                    <action selector="actionLogin" destination="215-ej-sOr" eventType="touchUpInside" id="4mg-aK-sRa"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAD-ko-IiD">
-                                                <rect key="frame" x="20" y="520" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="453.5" width="374" height="50"/>
                                                 <color key="backgroundColor" name="buttonColor"/>
                                                 <state key="normal" title="회원가입"/>
                                                 <userDefinedRuntimeAttributes>
@@ -113,7 +113,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnK-r5-NcS">
-                                                <rect key="frame" x="20" y="586" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="519.5" width="374" height="50"/>
                                                 <color key="backgroundColor" name="buttonColor"/>
                                                 <state key="normal" title="비밀번호 찾기"/>
                                                 <userDefinedRuntimeAttributes>
@@ -132,7 +132,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1C4-50-5zb">
-                                                <rect key="frame" x="20" y="644" width="374" height="50"/>
+                                                <rect key="frame" x="20" y="577.5" width="374" height="50"/>
                                                 <color key="backgroundColor" name="buttonColor"/>
                                                 <state key="normal" title="아이디찾기"/>
                                                 <userDefinedRuntimeAttributes>
@@ -151,7 +151,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pHo-B0-j80">
-                                                <rect key="frame" x="20" y="710" width="374" height="166"/>
+                                                <rect key="frame" x="20" y="643.5" width="374" height="166"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ik0-b1-Mad">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -216,6 +216,7 @@
                                             <constraint firstItem="WAD-ko-IiD" firstAttribute="top" secondItem="Bgv-dc-IHJ" secondAttribute="bottom" constant="16" id="TwL-dI-VHf"/>
                                             <constraint firstItem="Guw-YR-YEh" firstAttribute="top" secondItem="9Ag-uS-0QW" secondAttribute="top" id="YVe-f2-pxu"/>
                                             <constraint firstItem="WAD-ko-IiD" firstAttribute="height" secondItem="Bgv-dc-IHJ" secondAttribute="height" id="bGC-Nf-vHg"/>
+                                            <constraint firstAttribute="bottom" secondItem="pHo-B0-j80" secondAttribute="bottom" constant="16" id="bIi-cx-N0Z"/>
                                             <constraint firstItem="SRl-XP-olD" firstAttribute="height" secondItem="9Ag-uS-0QW" secondAttribute="height" multiplier="0.3" id="bLf-Jq-DhR"/>
                                             <constraint firstItem="1C4-50-5zb" firstAttribute="top" secondItem="OnK-r5-NcS" secondAttribute="bottom" constant="8" id="dJ2-Yt-1KZ"/>
                                             <constraint firstItem="ik0-b1-Mad" firstAttribute="height" secondItem="1C4-50-5zb" secondAttribute="height" id="exh-BF-18e"/>

@@ -31,13 +31,18 @@ class SignInViewController: BaseViewController {
         super.dismissKeyboard()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if #available(iOS 13.0, *) {
             addAppleIDButton()
         }
-        
         
         
                     //UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "SimpleMemoMain", bundle: nil).instantiateViewController(withIdentifier: "ListNav")
@@ -46,8 +51,14 @@ class SignInViewController: BaseViewController {
         
         // facebook button
         let loginButton = FBLoginButton()
-        loginButton.frame = viewFacebookID.bounds
         viewFacebookID.addSubview(loginButton)
+        
+        loginButton.topAnchor.constraint(equalTo: viewFacebookID.topAnchor).isActive = true
+        loginButton.leadingAnchor.constraint(equalTo: viewFacebookID.leadingAnchor).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: viewFacebookID.trailingAnchor).isActive = true
+        loginButton.bottomAnchor.constraint(equalTo: viewFacebookID.bottomAnchor).isActive = true
+        loginButton.translatesAutoresizingMaskIntoConstraints = false;
+        
         //loginButton.permissions = ["public_profile", "emial", "user_friends"]
         //loginButton.addTarget(self, action: #selector(handleFacebookSignInButton), for: .touchUpInside)
         loginButton.delegate = self
@@ -110,8 +121,12 @@ class SignInViewController: BaseViewController {
         button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
         
         viewAppleID.isHidden = false
-        button.frame = viewAppleID.bounds
         viewAppleID.addSubview(button)
+        button.topAnchor.constraint(equalTo: viewAppleID.topAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: viewAppleID.leadingAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: viewAppleID.trailingAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: viewAppleID.bottomAnchor).isActive = true
+        button.translatesAutoresizingMaskIntoConstraints = false;
     }
     
     @IBAction func handleKakaoSignInButton() {
@@ -198,7 +213,10 @@ class SignInViewController: BaseViewController {
         
     }
     
-    @IBAction func actionLogin(snsData: Dictionary<String,Any>? = nil) {
+    @IBAction func actionLogin() {
+        actionLogin(snsData: nil)
+    }
+    func actionLogin(snsData: Dictionary<String,Any>? = nil) {
         
         var id = ""
         var pw = ""
