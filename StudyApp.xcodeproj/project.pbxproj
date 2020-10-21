@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64499D32250BB39C00246487 /* Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64499D31250BB39C00246487 /* Sign.storyboard */; };
+		64499D32250BB39C00246487 /* Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64499D31250BB39C00246487 /* Sign.storyboard */; settings = {ASSET_TAGS = ("동의", ); }; };
 		64499D34250BB3A500246487 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64499D33250BB3A500246487 /* Intro.storyboard */; };
 		64499D42250BB57D00246487 /* intro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64499D41250BB57C00246487 /* intro.jpg */; };
 		64499D6A250CC5A000246487 /* CommonAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D69250CC5A000246487 /* CommonAlert.swift */; };
@@ -127,20 +127,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		64499D37250BB4FD00246487 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		64499D38250BB50200246487 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		64499D39250BB51400246487 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,10 +205,8 @@
 				64C11A822516007F007D6DC1 /* StudyApp.entitlements */,
 				64499D6F250CE8CE00246487 /* Common */,
 				64499D3E250BB54B00246487 /* Source */,
-				64499D38250BB50200246487 /* Domain */,
 				64B7DEF42506656C00616D87 /* AppDelegate.swift */,
 				64B7DEF82506656C00616D87 /* ViewController.swift */,
-				64499D37250BB4FD00246487 /* Model */,
 				64499D35250BB4D200246487 /* View */,
 				64499D36250BB4F400246487 /* Controller */,
 				64B7DEFD2506656F00616D87 /* Assets.xcassets */,
@@ -293,8 +277,11 @@
 		64B7DEE92506656C00616D87 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					"동의",
+				);
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "장태현";
 				TargetAttributes = {
 					64B7DEF02506656C00616D87 = {
@@ -478,6 +465,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -502,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -538,6 +526,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -556,7 +545,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -581,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.sejongtelecom.StudyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/danielchang/Dev/Study/StudyApp/StudyApp/StudyApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/StudyApp/StudyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -602,7 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.sejongtelecom.StudyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/danielchang/Dev/Study/StudyApp/StudyApp/StudyApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/StudyApp/StudyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
