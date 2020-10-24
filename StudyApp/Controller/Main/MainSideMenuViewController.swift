@@ -16,7 +16,7 @@ class MainSideMenuViewController: UIViewController {
 
         let tableView = UITableView()
         
-        print("UIApplication.shared.keyWindow?.safeAreaInsets.top \(UIApplication.shared.keyWindow?.safeAreaInsets.top )")
+        //print("UIApplication.shared.keyWindow?.safeAreaInsets.top \(UIApplication.shared.keyWindow?.safeAreaInsets.top )")
         tableView.frame = self.view.frame
         
         self.view.addSubview(tableView)
@@ -42,6 +42,17 @@ extension MainSideMenuViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Common.GF_TOAST(self.view, menus[indexPath.row])
+        
+        if indexPath.row == 2 {
+
+            let loginHistory = CoreDataManager.shared.getLogin()
+            
+            CoreDataManager.shared.deleteLogin(userEmail: loginHistory.first!.user_email!) { isSuccess in
+
+                self.present(UIStoryboard(name: "Sign", bundle: nil).instantiateViewController(withIdentifier: "SignInViewController"), animated: true, completion: nil)
+            }
+        } else {
+            Common.GF_TOAST(self.view, menus[indexPath.row])
+        }
     }
 }

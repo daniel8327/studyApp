@@ -16,6 +16,7 @@ import KakaoSDKUser
 import SwiftyJSON
 import FBSDKCoreKit
 import FBSDKLoginKit
+import GoogleSignIn
 
 class SignInViewController: BaseViewController {
     
@@ -77,15 +78,14 @@ class SignInViewController: BaseViewController {
         if loginHistory.count > 0 {
             
             var snsData = [String: Any]()
-            snsData.updateValue(loginHistory.first!.login_type, forKey: "login_type")
-            snsData.updateValue(loginHistory.first!.user_email, forKey: "user_email")
-            snsData.updateValue(loginHistory.first!.user_pw, forKey: "user_pw")
+            snsData.updateValue(loginHistory.first!.login_type!, forKey: "login_type")
+            snsData.updateValue(loginHistory.first!.user_email!, forKey: "user_email")
+            snsData.updateValue(loginHistory.first!.user_pw!, forKey: "user_pw")
             snsData.updateValue(loginHistory.first!.group_id, forKey: "group_id")
-            snsData.updateValue(loginHistory.first!.user_phone, forKey: "user_phone")
+            snsData.updateValue(loginHistory.first!.user_phone!, forKey: "user_phone")
             self.actionLogin(snsData: snsData)
         }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -153,7 +153,7 @@ class SignInViewController: BaseViewController {
                         }
                     }
                 } else {
-                    Common.GF_TOAST(self.view, "카카오톡이 안깔려있음")
+                    //Common.GF_TOAST(self.view, "카카오톡이 안깔려있음")
                     // 카카오계정으로 로그인
                     AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                         if let error = error {
@@ -208,9 +208,12 @@ class SignInViewController: BaseViewController {
         controller.performRequests()
     }
     
-    @objc func handleFacebookSignInButton() {
+    @IBAction func actionGoogleSignIn(_ sender: Any) {
         
-        
+        GIDSignIn.sharedInstance()?.signOut()
+        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     @IBAction func actionLogin() {
@@ -431,5 +434,29 @@ extension SignInViewController: LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("facebook log out")
+    }
+}
+extension SignInViewController: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+      if let error = error {
+        if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+          print("The user has not signed in before or they have since signed out.")
+        } else {
+          print("\(error.localizedDescription)")
+        }
+        return
+      }
+        
+        print("구글 앱 로그인: \(user.userID!)")
+        
+        var snsData = [String: Any]()
+        snsData.updateValue("구글", forKey: "login_type")
+        snsData.updateValue(user.userID!, forKey: "user_email")
+        snsData.updateValue(user.userID!, forKey: "user_pw")
+        snsData.updateValue(1, forKey: "group_id")
+        snsData.updateValue("", forKey: "user_phone")
+        self.actionLogin(snsData: snsData)
     }
 }

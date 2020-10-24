@@ -18,6 +18,8 @@
 		64499D77250CEDFF00246487 /* SignFindPWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D76250CEDFF00246487 /* SignFindPWViewController.swift */; };
 		64499D8725139CD000246487 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 64499D8625139CD000246487 /* login.png */; };
 		64499D892513A2D600246487 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64499D882513A2D600246487 /* Extension.swift */; };
+		6489127C2543F0B700BC8EA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6489127B2543F0B700BC8EA7 /* GoogleService-Info.plist */; };
+		6489127E2543F2F900BC8EA7 /* btn_google_dark_focus_ios@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6489127D2543F2F900BC8EA7 /* btn_google_dark_focus_ios@3x.png */; };
 		64AE7EE82507E33C005CEFFD /* image0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE22507E33C005CEFFD /* image0.jpg */; };
 		64AE7EE92507E33C005CEFFD /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE32507E33C005CEFFD /* image2.jpg */; };
 		64AE7EEA2507E33C005CEFFD /* image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 64AE7EE42507E33C005CEFFD /* image4.jpg */; };
@@ -57,6 +59,8 @@
 		64499D76250CEDFF00246487 /* SignFindPWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFindPWViewController.swift; sourceTree = "<group>"; };
 		64499D8625139CD000246487 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		64499D882513A2D600246487 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		6489127B2543F0B700BC8EA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6489127D2543F2F900BC8EA7 /* btn_google_dark_focus_ios@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_google_dark_focus_ios@3x.png"; sourceTree = "<group>"; };
 		64AE7EE22507E33C005CEFFD /* image0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image0.jpg; sourceTree = "<group>"; };
 		64AE7EE32507E33C005CEFFD /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 		64AE7EE42507E33C005CEFFD /* image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpg; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 		64499D3E250BB54B00246487 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6489127D2543F2F900BC8EA7 /* btn_google_dark_focus_ios@3x.png */,
 				64C11A8925160902007D6DC1 /* kakao_login_large_wide.png */,
 				64499D8625139CD000246487 /* login.png */,
 				64499D41250BB57C00246487 /* intro.jpg */,
@@ -201,6 +206,7 @@
 		64B7DEF32506656C00616D87 /* StudyApp */ = {
 			isa = PBXGroup;
 			children = (
+				6489127B2543F0B700BC8EA7 /* GoogleService-Info.plist */,
 				64DC8E28251F89C00091AED4 /* CoreData */,
 				64C11A822516007F007D6DC1 /* StudyApp.entitlements */,
 				64499D6F250CE8CE00246487 /* Common */,
@@ -261,6 +267,7 @@
 				64B7DEEF2506656C00616D87 /* Resources */,
 				64B7DF1025067F2700616D87 /* ShellScript */,
 				68F67C0FDB9B1389CB2E7C2F /* [CP] Embed Pods Frameworks */,
+				E3EC7F77420F83589E4F1A5C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,10 +328,12 @@
 				64B7DEFE2506656F00616D87 /* Assets.xcassets in Resources */,
 				64B7DEFC2506656C00616D87 /* Main.storyboard in Resources */,
 				64AE7EE82507E33C005CEFFD /* image0.jpg in Resources */,
+				6489127E2543F2F900BC8EA7 /* btn_google_dark_focus_ios@3x.png in Resources */,
 				64AE7EEA2507E33C005CEFFD /* image4.jpg in Resources */,
 				64499D34250BB3A500246487 /* Intro.storyboard in Resources */,
 				64C11A8A25160902007D6DC1 /* kakao_login_large_wide.png in Resources */,
 				64AE7EEB2507E33C005CEFFD /* image1.jpg in Resources */,
+				6489127C2543F0B700BC8EA7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +394,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StudyApp/Pods-StudyApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3EC7F77420F83589E4F1A5C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StudyApp/Pods-StudyApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StudyApp/Pods-StudyApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StudyApp/Pods-StudyApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

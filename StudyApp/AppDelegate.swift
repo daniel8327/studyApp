@@ -13,6 +13,7 @@ import FBSDKCoreKit
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,10 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // facebook
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             
             UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Intro", bundle: nil).instantiateViewController(withIdentifier: "IntroNavigation")
         }
+        GIDSignIn.sharedInstance().clientID = "626556109672-2gfc32nur4tokqsp8c1p1v54g0d3ucfa.apps.googleusercontent.com"
         return true
     }
     
@@ -45,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // facebook
         ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
+    
         return false
     }
     
