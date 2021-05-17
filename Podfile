@@ -15,6 +15,6 @@ pod 'KakaoSDKAuth'  # 카카오 로그인
 pod 'KakaoSDKUser'  # 사용자 관리
 pod 'ANActivityIndicator' #Indicator
 pod 'M13Checkbox' # checkbox
-pod 'FBSDKLoginKit' #facebook id
+pod 'FBSDKLoginKit' #facebookㄲㄲㄲㄱ id
 pod 'GoogleSignIn' #Google id
 end
