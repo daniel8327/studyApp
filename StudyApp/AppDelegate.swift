@@ -28,11 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KakaoSDKCommon.initSDK(appKey: "ba4ea422b238a8f4b64aab395b4ebde5")
         
         // facebook
-        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
+        //ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             
-            UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Intro", bundle: nil).instantiateViewController(withIdentifier: "IntroNavigation")
+            UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Intro", bundle: nil).instantiateViewController(withIdentifier: "IntroPageViewController")
         }
         GIDSignIn.sharedInstance().clientID = "626556109672-2gfc32nur4tokqsp8c1p1v54g0d3ucfa.apps.googleusercontent.com"
         return true
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // facebook
-        ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
+        //ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
     
         return false
     }
